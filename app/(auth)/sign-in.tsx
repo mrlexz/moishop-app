@@ -19,7 +19,6 @@ import CustomButton from "@/components/CustomButton";
 import { router } from "expo-router";
 import { useMutation } from "@apollo/client";
 import { LoginDocument } from "../__generated__/graphql";
-import { Notifier, Easing, NotifierComponents } from "react-native-notifier";
 import useToastMessage from "../hooks/useToastMessage";
 
 type FormValues = {
