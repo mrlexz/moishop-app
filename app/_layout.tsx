@@ -1,37 +1,53 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
+import { SplashScreen, Stack } from "expo-router";
+import { useFonts } from "expo-font";
+import { useEffect } from "react";
+import { ApolloWrapper } from "./lib/apollo-wrapper";
 
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-// Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+  const [fontsLoaded, error] = useFonts({
+    "Recursive-Black": require("../assets/fonts/Recursive-Black.ttf"),
+    "Recursive-Bold": require("../assets/fonts/Recursive-Bold.ttf"),
+    "Recursive-ExtraBold": require("../assets/fonts/Recursive-ExtraBold.ttf"),
+    "Recursive-Light": require("../assets/fonts/Recursive-Light.ttf"),
+    "Recursive-Medium": require("../assets/fonts/Recursive-Medium.ttf"),
+    "Recursive-Regular": require("../assets/fonts/Recursive-Regular.ttf"),
+    "Recursive-SemiBold": require("../assets/fonts/Recursive-SemiBold.ttf"),
   });
 
   useEffect(() => {
-    if (loaded) {
+    if (error) {
+      throw new Error("Failed to load fonts");
+    }
+
+    if (fontsLoaded) {
+      // Do something after fonts are loaded
       SplashScreen.hideAsync();
     }
-  }, [loaded]);
+  }, [fontsLoaded, error]);
 
-  if (!loaded) {
+  if (!fontsLoaded && !error) {
     return null;
   }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    <ApolloWrapper>
       <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
+        {/* <ToastManager /> */}
+        <Stack.Screen
+          name="index"
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="(auth)"
+          options={{
+            headerShown: false,
+          }}
+        />
       </Stack>
-    </ThemeProvider>
+    </ApolloWrapper>
   );
 }

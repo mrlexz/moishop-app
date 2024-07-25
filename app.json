@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
+    "scheme": "casemoishop",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
@@ -13,7 +13,8 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.nguyenqui1011.casemoishopapp"
     },
     "android": {
       "adaptiveIcon": {
@@ -27,10 +28,32 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/Recursive-Black.ttf",
+            "./assets/fonts/Recursive-Bold.ttf",
+            "./assets/fonts/Recursive-ExtraBold.ttf",
+            "./assets/fonts/Recursive-Light.ttf",
+            "./assets/fonts/Recursive-Medium.ttf",
+            "./assets/fonts/Recursive-Regular.ttf",
+            "./assets/fonts/Recursive-SemiBold.ttf"
+          ]
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "3e171551-99d6-482c-8eba-84158aac0f5a"
+      }
     }
   }
 }
