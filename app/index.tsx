@@ -3,8 +3,10 @@ import { StatusBar } from "expo-status-bar";
 import { router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import CustomButton from "@/components/CustomButton";
+import { useGlobalContext } from "@/context/GlobalProvider";
 
 export default function Index() {
+  const globalContext = useGlobalContext();
   return (
     <SafeAreaView className="h-full bg-dark">
       <ScrollView contentContainerStyle={{ height: "100%" }}>
@@ -40,6 +42,10 @@ export default function Index() {
             <CustomButton
               title="Continue"
               onPress={() => {
+                if (globalContext.isLogged) {
+                  router.push("/home");
+                  return;
+                }
                 router.push("/sign-in");
               }}
             />

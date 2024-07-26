@@ -2,7 +2,8 @@ import React from "react";
 import { Tabs } from "expo-router";
 import { Image, Text, View } from "react-native";
 
-import { Camera, Home, User } from "lucide-react-native";
+import { Camera, Home, PlusCircle, User } from "lucide-react-native";
+import { StatusBar } from "expo-status-bar";
 
 const TabIcon = ({
   focused,
@@ -16,7 +17,7 @@ const TabIcon = ({
   icon: React.ReactNode;
 }) => {
   return (
-    <View className="flex items-center">
+    <View className="flex items-center justify-center">
       {icon}
       <Text
         className={`${focused ? "font-pbold" : "font-pregular"} text-xs`}
@@ -33,13 +34,21 @@ function TabLayout() {
     <>
       <Tabs
         screenOptions={{
+          headerShown: false,
           tabBarShowLabel: false,
           tabBarActiveTintColor: "#ea580b",
           tabBarStyle: {
-            backgroundColor: "#161622",
-            borderTopColor: "#232533",
-            borderTopWidth: 1,
-            height: 84,
+            backgroundColor: "#232533",
+            position: "absolute",
+            bottom: 25,
+            left: 20,
+            right: 20,
+            borderRadius: 15,
+            elevation: 0,
+            borderColor: "transparent",
+            paddingBottom: 0,
+            height: 70,
+            borderTopWidth: 0,
           },
         }}
       >
@@ -56,6 +65,20 @@ function TabLayout() {
                   name={"Home"}
                   icon={<Home size={24} color={color} />}
                 />
+              );
+            },
+          }}
+        />
+        <Tabs.Screen
+          name="configuration"
+          options={{
+            headerShown: false,
+            title: "",
+            tabBarIcon: ({ focused, color }) => {
+              return (
+                <View className="-top-8 bg-[#232533] p-4 rounded-full">
+                  <PlusCircle size={44} color={color} />
+                </View>
               );
             },
           }}
@@ -78,6 +101,7 @@ function TabLayout() {
           }}
         />
       </Tabs>
+      <StatusBar backgroundColor="#161622" style="light" />
     </>
   );
 }

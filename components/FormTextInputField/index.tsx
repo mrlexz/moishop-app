@@ -1,4 +1,4 @@
-import { Eye, EyeOff } from "lucide-react-native";
+import { Eye, EyeOff, SearchIcon } from "lucide-react-native";
 import React from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 
@@ -9,10 +9,11 @@ import {
 } from "react-hook-form";
 
 type FormFieldProps = {
-  label: string;
+  label?: string;
   type: "text" | "password";
   placeholder?: string;
   containerClass?: string;
+  iconInput?: React.ReactNode;
 } & UseControllerProps;
 
 const ControlledInput = (props: FormFieldProps) => {
@@ -28,6 +29,7 @@ const ControlledInput = (props: FormFieldProps) => {
     containerClass = "",
     rules,
     defaultValue,
+    iconInput,
     ...inputProps
   } = props;
 
@@ -37,7 +39,9 @@ const ControlledInput = (props: FormFieldProps) => {
 
   return (
     <View className={`space-y-2 ${containerClass}`}>
-      <Text className="text-gray-100 text-base font-pmedium">{label}</Text>
+      {label && (
+        <Text className="text-gray-100 text-base font-pmedium">{label}</Text>
+      )}
 
       <View className="w-full h-16 px-4 bg-[#1E1E2D] border-[#232533] border-2 rounded-2xl focus:border-[#FF9C01] items-center flex-row">
         <TextInput
@@ -64,6 +68,7 @@ const ControlledInput = (props: FormFieldProps) => {
             )}
           </TouchableOpacity>
         )}
+        {type !== "password" && iconInput ? <View>{iconInput}</View> : null}
       </View>
       <View>
         {hasError && (

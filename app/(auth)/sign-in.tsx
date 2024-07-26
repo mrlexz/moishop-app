@@ -20,6 +20,8 @@ import { router } from "expo-router";
 import { useMutation } from "@apollo/client";
 import { LoginDocument } from "../__generated__/graphql";
 import useToastMessage from "../hooks/useToastMessage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { StorageKeys } from "@/constants/StorageKeys";
 
 type FormValues = {
   email: string;
@@ -45,8 +47,14 @@ function SignIn() {
           password: data.password,
         },
       },
-      onCompleted: (data) => {
+      onCompleted: async (data) => {
         if (data.signIn?.access_token) {
+          try {
+            await AsyncStorage.setItem(
+              StorageKeys.TOKEN,
+              data.signIn.access_token
+            );
+          } catch (e) {}
           showToast({
             title: "Login successful",
             type: "success",

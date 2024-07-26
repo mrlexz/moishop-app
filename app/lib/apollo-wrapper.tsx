@@ -1,3 +1,4 @@
+import { StorageKeys } from "@/constants/StorageKeys";
 import {
   ApolloClient,
   ApolloLink,
@@ -6,6 +7,7 @@ import {
   InMemoryCache,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { NotifierWrapper } from "react-native-notifier";
 
@@ -14,20 +16,22 @@ function makeClient() {
     uri: process.env.EXPO_PUBLIC_GRAPHQL_ENDPOINT,
   });
 
-  const authLink = setContext((_, { headers }) => {
-    // get the authentication token from local storage if it exists
-    const token = "";
-    // const parsedToken = token ? JSON.parse(token) : {};
-    // const kindleUserId = localStorage.getItem(KINDE_USER_ID);
+  const authLink = setContext(async (_, { headers }) => {
+    try {
+      // get the authentication token from local storage if it exists
+      const token = await AsyncStorage.getItem(StorageKeys.TOKEN);
+      // const parsedToken = token ? JSON.parse(token) : {};
+      // const kindleUserId = localStorage.getItem(KINDE_USER_ID);
 
-    // return the headers to the context so httpLink can read them
-    return {
-      headers: {
-        ...headers,
-        authorization: token ? `Bearer ${token}` : undefined,
-        // kinde_user_id: user?.id || kindleUserId,
-      },
-    };
+      // return the headers to the context so httpLink can read them
+      return {
+        headers: {
+          ...headers,
+          authorization: token ? `Bearer ${token}` : undefined,
+          // kinde_user_id: user?.id || kindleUserId,
+        },
+      };
+    } catch (error) {}
   });
 
   const link = authLink.concat(httpLink);
