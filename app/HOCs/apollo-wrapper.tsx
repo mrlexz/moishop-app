@@ -7,6 +7,7 @@ import {
   InMemoryCache,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { NotifierWrapper } from "react-native-notifier";
@@ -46,7 +47,9 @@ export function ApolloWrapper({ children }: React.PropsWithChildren) {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <ApolloProvider client={makeClient()}>
-        <NotifierWrapper>{children}</NotifierWrapper>
+        <BottomSheetModalProvider>
+          <NotifierWrapper>{children}</NotifierWrapper>
+        </BottomSheetModalProvider>
       </ApolloProvider>
     </GestureHandlerRootView>
   );

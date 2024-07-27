@@ -5,13 +5,11 @@ import React from "react";
 function ConfigurationLayout() {
   return (
     <>
-      <Stack>
-        {/* <Stack.Screen
-          name="index"
-          options={{
-            headerShown: false,
-          }}
-        /> */}
+      <Stack
+        screenOptions={{
+          title: "Configuration",
+        }}
+      >
         <Stack.Screen
           name="design"
           options={{

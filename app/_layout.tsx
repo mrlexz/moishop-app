@@ -1,7 +1,7 @@
 import { SplashScreen, Stack } from "expo-router";
 import { useFonts } from "expo-font";
 import { useEffect } from "react";
-import { ApolloWrapper } from "./lib/apollo-wrapper";
+import { ApolloWrapper } from "./HOCs/apollo-wrapper";
 import GlobalProvider from "@/context/GlobalProvider";
 
 SplashScreen.preventAutoHideAsync();
@@ -52,6 +52,21 @@ export default function RootLayout() {
             name="(tabs)"
             options={{
               headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="configurations"
+            options={{
+              headerShown: true,
+              title: "Configurations",
+              headerBackTitle: "Back",
+              headerTitleStyle: {
+                fontFamily: "Recursive-Bold",
+                color: "#fff",
+              },
+              headerStyle: {
+                backgroundColor: "#161622",
+              },
             }}
           />
         </Stack>
