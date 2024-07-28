@@ -25,7 +25,7 @@ function ConfigurationScreen() {
               <View className="ml-4">
                 <TouchableOpacity
                   onPress={() => {
-                    router.push("/configurations/design");
+                    router.push("/configurations/upload");
                   }}
                 >
                   <CircleChevronRight color={"#f97316"} size={32} />

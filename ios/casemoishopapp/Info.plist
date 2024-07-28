@@ -89,5 +89,11 @@
     <string>Automatic</string>
     <key>UIViewControllerBasedStatusBarAppearance</key>
     <false/>
+    <key>NSCameraUsageDescription</key>
+    <string>Allow $(PRODUCT_NAME) to access your camera, so you can scan documents</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Allow $(PRODUCT_NAME) to access your library, so you can share image your friends</string>
+    <key>SMicrophoneUsageDescription</key>
+    <string>Allow $(PRODUCT_NAME) to access your microphone, so you can tell with your friends</string>
   </dict>
 </plist>

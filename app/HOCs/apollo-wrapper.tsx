@@ -12,7 +12,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { NotifierWrapper } from "react-native-notifier";
 
-function makeClient() {
+export function makeClient() {
   const httpLink = new HttpLink({
     uri: process.env.EXPO_PUBLIC_GRAPHQL_ENDPOINT,
   });

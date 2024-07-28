@@ -15,6 +15,9 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
 const documents = {
     "\n  mutation Login($input: SignInInput!) {\n    signIn(input: $input) {\n      user {\n        email\n        password\n      }\n      access_token\n      isNotHavePassword\n    }\n  }\n": types.LoginDocument,
     "\n  mutation Register($input: SignUpInput!) {\n    signUp(input: $input) {\n      success\n      message\n    }\n  }\n": types.RegisterDocument,
+    "\n  mutation CreateConfiguration($input: CreateConfigurationInput) {\n    createConfiguration(input: $input) {\n      id\n    }\n  }\n": types.CreateConfigurationDocument,
+    "\n  query GetConfiguration($configurationId: ID!) {\n    configuration(id: $configurationId) {\n      id\n      width\n      height\n      croppedImgUrl\n      imgUrl\n      orderStatus\n      phoneModel\n      caseMaterial\n      caseFinish\n      caseColor\n    }\n  }\n": types.GetConfigurationDocument,
+    "\n  mutation UpdateConfiguration($input: UpdateConfigurationInput) {\n    updateConfiguration(input: $input) {\n      id\n      croppedImgUrl\n      imgUrl\n      height\n      width\n    }\n  }\n": types.UpdateConfigurationDocument,
     "\n  query GetAuthStatus {\n    getAuthStatus {\n      success\n      user {\n        name\n        id\n        email\n      }\n      token\n    }\n  }\n": types.GetAuthStatusDocument,
 };
 
@@ -40,6 +43,18 @@ export function gql(source: "\n  mutation Login($input: SignInInput!) {\n    sig
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\n  mutation Register($input: SignUpInput!) {\n    signUp(input: $input) {\n      success\n      message\n    }\n  }\n"): (typeof documents)["\n  mutation Register($input: SignUpInput!) {\n    signUp(input: $input) {\n      success\n      message\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  mutation CreateConfiguration($input: CreateConfigurationInput) {\n    createConfiguration(input: $input) {\n      id\n    }\n  }\n"): (typeof documents)["\n  mutation CreateConfiguration($input: CreateConfigurationInput) {\n    createConfiguration(input: $input) {\n      id\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  query GetConfiguration($configurationId: ID!) {\n    configuration(id: $configurationId) {\n      id\n      width\n      height\n      croppedImgUrl\n      imgUrl\n      orderStatus\n      phoneModel\n      caseMaterial\n      caseFinish\n      caseColor\n    }\n  }\n"): (typeof documents)["\n  query GetConfiguration($configurationId: ID!) {\n    configuration(id: $configurationId) {\n      id\n      width\n      height\n      croppedImgUrl\n      imgUrl\n      orderStatus\n      phoneModel\n      caseMaterial\n      caseFinish\n      caseColor\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  mutation UpdateConfiguration($input: UpdateConfigurationInput) {\n    updateConfiguration(input: $input) {\n      id\n      croppedImgUrl\n      imgUrl\n      height\n      width\n    }\n  }\n"): (typeof documents)["\n  mutation UpdateConfiguration($input: UpdateConfigurationInput) {\n    updateConfiguration(input: $input) {\n      id\n      croppedImgUrl\n      imgUrl\n      height\n      width\n    }\n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

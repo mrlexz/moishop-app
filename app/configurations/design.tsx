@@ -26,6 +26,7 @@ import BottomSheet, {
   BottomSheetView,
 } from "@gorhom/bottom-sheet";
 import { ChevronsUpDown } from "lucide-react-native";
+import { useLocalSearchParams } from "expo-router";
 
 type FormValues = {
   color: string;
@@ -35,6 +36,8 @@ type FormValues = {
 };
 
 function DesignScreen() {
+  const data = useLocalSearchParams<{ configId?: string }>();
+  console.log("🚀 ~ DesignScreen ~ data:", data.configId);
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
   const { control, handleSubmit, watch } = useForm<FormValues>({
     defaultValues: {
