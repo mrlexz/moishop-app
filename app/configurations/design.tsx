@@ -26,29 +26,78 @@ import BottomSheet, {
   BottomSheetView,
 } from "@gorhom/bottom-sheet";
 import { ChevronsUpDown } from "lucide-react-native";
-import { useLocalSearchParams } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
+import { useMutation } from "@apollo/client";
+import {
+  CaseColor,
+  CaseFinish,
+  CaseMaterial,
+  PhoneModel,
+  UpdateConfigurationDocument,
+} from "../__generated__/graphql";
+import useToastMessage from "../hooks/useToastMessage";
 
 type FormValues = {
-  color: string;
-  material: string;
-  finish: string;
-  model: string;
+  color?: CaseColor;
+  material?: CaseMaterial;
+  finish?: CaseFinish;
+  model?: PhoneModel;
 };
 
 function DesignScreen() {
-  const data = useLocalSearchParams<{ configId?: string }>();
-  console.log("🚀 ~ DesignScreen ~ data:", data.configId);
+  const { configId } = useLocalSearchParams<{ configId?: string }>();
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
+  const { showToast } = useToastMessage();
   const { control, handleSubmit, watch } = useForm<FormValues>({
     defaultValues: {
-      color: "",
-      material: "",
-      finish: "",
+      color: undefined,
+      material: undefined,
+      finish: undefined,
       model: MODELS.options[0].value,
     },
   });
 
-  const onSubmit = (data: FormValues) => {};
+  const [updateConfiguration, { loading }] = useMutation(
+    UpdateConfigurationDocument
+  );
+
+  const onSubmit = (data: FormValues) => {
+    try {
+      if (!configId) {
+        return;
+      }
+      if (!data.color || !data.material || !data.finish || !data.model) {
+        return;
+      }
+      updateConfiguration({
+        variables: {
+          input: {
+            id: configId,
+            phoneModel: data.model,
+            caseColor: data.color,
+            caseMaterial: data.material,
+            caseFinish: data.finish,
+          },
+        },
+        onCompleted: (data) => {
+          if (!data?.updateConfiguration?.id) {
+            showToast({
+              title: "Error",
+              desc: "There was an error saving your configuration.",
+              type: "error",
+            });
+            return;
+          }
+          showToast({
+            title: "Success",
+            desc: "Updated configuration",
+            type: "success",
+          });
+          router.push(`/configurations/review?configId=${configId}`);
+        },
+      });
+    } catch (error) {}
+  };
 
   return (
     <>
@@ -263,6 +312,8 @@ function DesignScreen() {
           </Text>
           <CustomButton
             title="Continue"
+            disabled={loading}
+            loading={loading}
             onPress={() => {
               handleSubmit(onSubmit)();
             }}

@@ -11,6 +11,8 @@ import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { NotifierWrapper } from "react-native-notifier";
+import { StripeProvider } from "@stripe/stripe-react-native";
+import { Platform } from "react-native";
 
 export function makeClient() {
   const httpLink = new HttpLink({
@@ -44,12 +46,19 @@ export function makeClient() {
 }
 
 export function ApolloWrapper({ children }: React.PropsWithChildren) {
+  if (Platform.OS === "web") {
+    return <>{children}</>;
+  }
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <ApolloProvider client={makeClient()}>
+        {/* <StripeProvider
+          publishableKey={process.env.EXPO_PUBLIC_STRIPE_PUBLISHABLE_KEY!}
+        > */}
         <BottomSheetModalProvider>
           <NotifierWrapper>{children}</NotifierWrapper>
         </BottomSheetModalProvider>
+        {/* </StripeProvider> */}
       </ApolloProvider>
     </GestureHandlerRootView>
   );
