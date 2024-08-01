@@ -5,7 +5,7 @@ export const USER_LOGIN = gql`
     signIn(input: $input) {
       user {
         email
-        password
+        name
       }
       access_token
       isNotHavePassword

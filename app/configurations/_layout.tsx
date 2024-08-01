@@ -1,5 +1,5 @@
 import { StripeProvider } from "@stripe/stripe-react-native";
-import { Stack } from "expo-router";
+import { Stack, usePathname } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 

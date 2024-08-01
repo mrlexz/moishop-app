@@ -4,28 +4,23 @@
     "slug": "casemoishop-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/case_moi_logo.png",
     "scheme": "casemoishop",
     "userInterfaceStyle": "automatic",
-    "splash": {
-      "image": "./assets/images/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.nguyenqui1011.casemoishopapp"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/images/onboarding-img.png",
+        "backgroundColor": "#000000"
       }
     },
     "web": {
       "bundler": "metro",
       "output": "server",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/case_moi_logo.png"
     },
     "plugins": [
       "expo-router",
@@ -49,7 +44,12 @@
           "photosPermission": "The app accesses your photos to let you share them with your friends."
         }
       ],
-      ["@stripe/stripe-react-native"]
+      [
+        "@stripe/stripe-react-native",
+        {
+          "merchantIdentifier": ""
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true

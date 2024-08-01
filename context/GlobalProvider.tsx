@@ -13,6 +13,7 @@ type GlobalContextType = {
   setIsLogged: (value: boolean) => void;
   user?: UserData;
   logout: () => void;
+  setUser: (value: UserData) => void;
 };
 
 const GlobalContext = createContext<GlobalContextType>({
@@ -20,6 +21,7 @@ const GlobalContext = createContext<GlobalContextType>({
   setIsLogged: () => {},
   user: null,
   logout: () => {},
+  setUser: () => {},
 });
 
 export const useGlobalContext = () => useContext(GlobalContext);
@@ -56,6 +58,7 @@ const GlobalProvider = ({ children }: { children: React.ReactNode }) => {
         setIsLogged,
         user: userData,
         logout,
+        setUser: setUserData,
       }}
     >
       {children}

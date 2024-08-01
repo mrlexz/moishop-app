@@ -21,6 +21,7 @@ export const GET_ORDER_PAYMENT_STATUS = gql`
           croppedImgUrl
           id
           caseColor
+          imgUrl
         }
         shippingAddress {
           id

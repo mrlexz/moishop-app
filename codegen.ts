@@ -1,7 +1,9 @@
 import { CodegenConfig } from "@graphql-codegen/cli";
 
+let schema = "https://shop.casemoishop4life.website/graphql";
+
 const config: CodegenConfig = {
-  schema: "https://shop.casemoishop4life.website/graphql",
+  schema,
   documents: ["app/**/*.ts"],
   generates: {
     "./app/__generated__/": {

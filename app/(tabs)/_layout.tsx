@@ -47,7 +47,7 @@ function TabLayout() {
             elevation: 0,
             borderColor: "transparent",
             paddingBottom: 0,
-            height: 70,
+            height: 60,
             borderTopWidth: 0,
           },
         }}

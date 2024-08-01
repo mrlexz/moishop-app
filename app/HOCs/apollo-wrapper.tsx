@@ -52,13 +52,9 @@ export function ApolloWrapper({ children }: React.PropsWithChildren) {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <ApolloProvider client={makeClient()}>
-        {/* <StripeProvider
-          publishableKey={process.env.EXPO_PUBLIC_STRIPE_PUBLISHABLE_KEY!}
-        > */}
         <BottomSheetModalProvider>
           <NotifierWrapper>{children}</NotifierWrapper>
         </BottomSheetModalProvider>
-        {/* </StripeProvider> */}
       </ApolloProvider>
     </GestureHandlerRootView>
   );

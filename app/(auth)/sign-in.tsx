@@ -22,6 +22,7 @@ import { LoginDocument } from "../__generated__/graphql";
 import useToastMessage from "../hooks/useToastMessage";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StorageKeys } from "@/constants/StorageKeys";
+import { useGlobalContext } from "@/context/GlobalProvider";
 
 type FormValues = {
   email: string;
@@ -29,6 +30,7 @@ type FormValues = {
 };
 
 function SignIn() {
+  const { setUser } = useGlobalContext();
   const { ...methods } = useForm({
     defaultValues: {
       email: "",
@@ -59,6 +61,7 @@ function SignIn() {
             title: "Login successful",
             type: "success",
           });
+          setUser(data.signIn.user);
           router.push("/home");
         }
       },

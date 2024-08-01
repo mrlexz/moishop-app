@@ -67,7 +67,6 @@ function ReviewScreen() {
       fetchPolicy: "network-only",
     });
 
-    console.log("🚀 ~ handlePayment ~ paymentIntent:", paymentIntent);
     if (!paymentIntent?.data?.createAppPayment?.paymentIntent) {
       showToast({
         desc: "Error from response create payment intent",

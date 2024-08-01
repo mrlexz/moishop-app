@@ -1,4 +1,4 @@
-import { SplashScreen, Stack } from "expo-router";
+import { SplashScreen, Stack, usePathname } from "expo-router";
 import { useFonts } from "expo-font";
 import { useEffect } from "react";
 import { ApolloWrapper } from "./HOCs/apollo-wrapper";
@@ -16,6 +16,8 @@ export default function RootLayout() {
     "Recursive-Regular": require("../assets/fonts/Recursive-Regular.ttf"),
     "Recursive-SemiBold": require("../assets/fonts/Recursive-SemiBold.ttf"),
   });
+
+  const pathname = usePathname();
 
   useEffect(() => {
     if (error) {
@@ -58,7 +60,10 @@ export default function RootLayout() {
             name="configurations"
             options={{
               headerShown: true,
-              title: "Configurations",
+              title:
+                pathname === "/configurations/thankyou"
+                  ? "Thank you"
+                  : "Configurations",
               headerBackTitle: "Back",
               headerTitleStyle: {
                 fontFamily: "Recursive-Bold",
@@ -67,6 +72,7 @@ export default function RootLayout() {
               headerStyle: {
                 backgroundColor: "#161622",
               },
+              headerBackVisible: pathname !== "/configurations/thankyou",
             }}
           />
         </Stack>
