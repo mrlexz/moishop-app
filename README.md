@@ -2,7 +2,7 @@
 
 This is a project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
-## Demo
+## [You can check demo here](https://utfs.io/f/c3c35467-c788-47e6-b849-cbcbfa5e7acb-yvbafu.50.44.mp4)
 
 <video width="400" controls>
   <source src="https://www.dailymotion.com/video/x93bn7c4" type="video/mp4">
@@ -41,4 +41,3 @@ npm run reset-project
 ```
 
 This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
