@@ -4,7 +4,10 @@ This is a project created with [`create-expo-app`](https://www.npmjs.com/package
 
 ## Demo
 
-[Watch the video](https://www.dailymotion.com/video/x93bn7c)
+<video width="400" controls>
+  <source src="https://www.dailymotion.com/video/x93bn7c4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 ## Get started
 
