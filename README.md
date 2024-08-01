@@ -4,7 +4,7 @@ This is a project created with [`create-expo-app`](https://www.npmjs.com/package
 
 ## Demo
 
-<video src="https://utfs.io/f/c3c35467-c788-47e6-b849-cbcbfa5e7acb-yvbafu.50.44.mp4" width="352" height="720"></video>
+[Watch the video](https://www.dailymotion.com/video/x93bn7c)
 
 ## Get started
 
